@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -21,12 +22,11 @@ public class ZipOutputHelper {
 
 	public ZipOutputHelper(OutputStream in) {
 		super();
-		this.zos = new ZipOutputStream(in);
+		this.zos = new ZipOutputStream(in, Charset.defaultCharset());
 	}
 
 	public ZipOutputHelper(File file) throws FileNotFoundException {
-		super();
-		this.zos = new ZipOutputStream(new FileOutputStream(file));
+		this(new FileOutputStream(file));
 	}
 	
 	public ZipOutputHelper(String filename) throws FileNotFoundException {
