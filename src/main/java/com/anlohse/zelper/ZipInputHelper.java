@@ -40,6 +40,7 @@ public class ZipInputHelper {
 		ZipEntry ze;
 		while ((ze = zis.getNextEntry()) != null) {
 			byte[] data = readData(ze);
+			if (ze.getName().endsWith("/")) continue;
 			fileBundle.put(ze.getName(), data);
 		}
 		return fileBundle;
